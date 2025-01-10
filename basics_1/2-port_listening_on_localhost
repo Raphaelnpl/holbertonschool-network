@@ -1,4 +1,11 @@
-#!/bin/bash
-# Script to listen on port 98 on localhost using netcat
+#!/usr/bin/env bash
+# Ce script écoute sur le port 98 de localhost
 
-nc -l -p 98
+# Vérifier si le script est exécuté avec les privilèges root
+if [[ $EUID -ne 0 ]]; then
+  echo "Ce script doit être exécuté en tant que root." >&2
+  exit 1
+fi
+
+# Utilisation de netcat pour écouter sur le port 98
+nc -l 98
